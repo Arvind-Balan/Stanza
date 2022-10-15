@@ -1,0 +1,155 @@
+<head>
+<!--===============================================================================================-->	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/stylesheets/user-styles/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/stylesheets/user-styles/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/stylesheets/user-styles/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/stylesheets/user-styles/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/stylesheets/user-styles/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/stylesheets/user-styles/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/stylesheets/user-styles/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/stylesheets/user-styles/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/stylesheets/user-styles/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/stylesheets/user-styles/slick.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/stylesheets/user-styles/magnific-popup.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/stylesheets/user-styles/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/stylesheets/user-styles/util.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/user-styles/main.css">
+<!--===============================================================================================-->
+ <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<style>
+	@media(min-width:320px){
+		.main{
+			margin-bottom: 50px;
+		}
+	}
+</style>
+ <body class="animsition">
+    {{#if user}}
+    {{>user-header}}
+    {{/if}}
+    {{{body}}}
+    {{#if user}}
+    {{>user-footer}}
+    {{/if}}
+    <script src="/javascripts/user-script.js"></script>
+
+<!--===============================================================================================-->	
+	<script src="/javascripts/user-js/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/javascripts/user-js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/javascripts/user-js/popper.js"></script>
+	<script src="/javascripts/user-js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/javascripts/user-js/select2.min.js"></script>
+	<script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="/javascripts/user-js/moment.min.js"></script>
+	<script src="/javascripts/user-js/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="/javascripts/user-js/slick.min.js"></script>
+	<script src="/javascripts/user-js/slick-custom.js"></script>
+<!--===============================================================================================-->
+	<script src="/javascripts/user-js/parallax100.js"></script>
+	<script>
+        $('.parallax100').parallax100();
+	</script>
+<!--===============================================================================================-->
+	<script src="/javascripts/user-js/jquery.magnific-popup.min.js"></script>
+	<script>
+		$('.gallery-lb').each(function() { // the containers for all your galleries
+			$(this).magnificPopup({
+		        delegate: 'a', // the selector for gallery item
+		        type: 'image',
+		        gallery: {
+		        	enabled:true
+		        },
+		        mainClass: 'mfp-fade'
+		    });
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="/javascripts/user-js/isotope.pkgd.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/javascripts/user-js/sweetalert.min.js"></script>
+	<script>
+		$('.js-addwish-b2').on('click', function(e){
+			e.preventDefault();
+		});
+
+		$('.js-addwish-b2').each(function(){
+			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-b2');
+				$(this).off('click');
+			});
+		});
+
+		$('.js-addwish-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-detail');
+				$(this).off('click');
+			});
+		});
+
+		/*---------------------------------------------*/
+
+		$('.js-addcart-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to cart !", "success");
+			});
+		});
+	
+	</script>
+<!--===============================================================================================-->
+	<script src="/javascripts/user-js/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			$(this).css('position','relative');
+			$(this).css('overflow','hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="/javascripts/user-js/main.js"></script>
+
+</body>
+</html>

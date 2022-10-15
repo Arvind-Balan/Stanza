@@ -1,0 +1,120 @@
+{{!-- --}}
+
+
+<!-- Content Start -->
+<div class="content">
+    <!-- Navbar Start -->
+    {{!-- <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0"> --}}
+        {{!-- <a href="#" class="navbar-brand d-flex d-lg-none me-4"></a>
+        <a href="#" class="sidebar-toggler flex-shrink-0"> --}}
+            {{!-- <i class="fa fa-bars"></i> --}}
+        {{!-- </a> --}}
+        {{!-- <div class="navbar-nav align-items-center ms-auto"> --}}
+            {{!-- <div class="nav-item">
+                <a href="#" class="nav-link ">
+                    <img class="rounded-circle me-lg-2" src="/images/admin.jpg" alt=""
+                        style="width: 35px; height: 35px;">
+                    <span class="d-none d-lg-inline-flex">Pranav</span>
+
+                </a>
+            </div> --}}
+        {{!-- </div> --}}
+    {{!-- </nav> --}}
+    <!-- Navbar End -->
+
+
+    <!-- Form Start -->
+    <div class="container-fluid pt-4">
+        <div class="row g-4">
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-secondary rounded h-100 p-4">
+                    {{!-- {{#if added}}
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <strong>Category added successfully!</strong> You can check in the show category list page if
+                        you want.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {{/if}}
+                    {{#if failed}}
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <strong>Something went wrong!</strong> You may entered the name of existing category.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {{/if}} --}}
+                    <h5 class="mb-3">Edit Coupon</h5>
+                    <form class="text-danger" id="form" {{!-- action="/admin/coupon-added" method="post" --}}>
+                        <div class="mb-3 text-white">
+                            <label for="" class="form-label text-light">Coupon name</label>
+                            <input placeholder="" value="{{coupon.name}}" type="text" required
+                                class="text-uppercase text-light form-control" name="name" id="name" aria-describedby=""
+                                style="width: 60%;">
+                            {{!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+                            </div> --}}
+                        </div>
+                        <div class="mb-3 text-white">
+                            <label for="" class="form-label text-light">Discount percentage</label>
+                            <input placeholder="" value="{{coupon.discount}}" type="text" required
+                                class="form-control  text-light" name="discount" id="discount" aria-describedby=""
+                                style="width: 60%;">
+                            {{!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+                            </div> --}}
+                        </div>
+                        <div class="mb-3 text-white">
+                            <label for="" class="form-label text-light">Coupon code</label>
+                            <input placeholder="" value="{{coupon.code}}" type="text" required
+                                class="text-uppercase text-light form-control" name="code" id="code" aria-describedby=""
+                                style="width: 60%;">
+                            {{!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+                            </div> --}}
+                        </div>
+
+                        <button onclick="updateCoupon('{{coupon._id}}')" ; {{!-- "submit" --}}
+                            class="btn btn-primary mt-2 btn-sm">Submit</button>
+                                </form>
+                
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/javascripts/admin-script.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js">
+</script>
+<script>
+    $("#form").validate({
+        rules: {
+            name: {
+                required: true
+            },
+            code: {
+                required: true
+            },
+            discount: {
+                required: true,
+                digits: true
+            }
+        },
+        messages: {
+            name: {
+                required: "Enter coupon name"
+                
+            },
+            code: {
+                required: "Enter coupon code"
+            },
+            discount: {
+                required: 'Enter discount',
+                digits: "Only digits are allowed"
+            }
+        }
+    })
+</script>

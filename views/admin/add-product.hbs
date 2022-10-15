@@ -1,0 +1,77 @@
+
+
+
+            <!-- Sale & Revenue Start -->
+            <div class="d-flex justify-content-center mt-5">
+             <div class="col-sm-12 col-xl-6 " >
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h5 class="mb-4">Add Product</h5>
+                            <form action="/admin/addProduct" method="post" enctype="multipart/form-data" >
+                            <div class="form-floating mb-3">
+                                <input type="text" name="name" class="form-control" id="floatingInput"
+                                    placeholder="Product Name">
+                                <label for="floatingInput" >Product</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="brand" class="form-control" id="floatingPassword"
+                                    placeholder="Password">
+                                <label for="floatingPassword">Brand</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="details" class="form-control" id="floatingPassword"
+                                    placeholder="Password">
+                                <label for="floatingPassword">Details</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="description" class="form-control" id="floatingPassword"
+                                    placeholder="Password">
+                                <label for="floatingPassword">Description</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select required class="form-select" name="category" id="floatingSelect"
+                                    aria-label="Floating label select example">
+                                    {{!-- <option selected></option> --}}
+                                    {{#each categories}}
+                                    <option value={{this._id}}>{{this.name}}</option>
+                                    {{/each}}
+                                    {{!-- <option value="2">Violin</option>
+                                    <option value="3">Keyboard</option> --}}
+                                </select>
+                                <label for="floatingSelect">Select category</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="quantity" class="form-control" id="floatingPassword"
+                                    placeholder="Password">
+                                <label for="floatingPassword">Quantity</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="actualPrice" class="form-control" id="floatingPassword"
+                                    placeholder="Password">
+                                <label for="floatingPassword">Price</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="sellingPrice" class="form-control" id="floatingPassword"
+                                    placeholder="Password">
+                                <label for="floatingPassword">Selling price</label>
+                            </div>
+                             <div class="mb-3">
+                                <label for="formFileMultiple" class="form-label">Add Images</label>
+                                <input name="images" class="form-control bg-dark" multiple type="file" id="formFileMultiple">
+                                 {{!-- <input type="submit" class="btn btn-sm btn-primary " > --}}
+                                 <button class="btn-danger" type="submit">Submit</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+            <!-- Recent Sales End -->
+
+
+
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>

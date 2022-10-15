@@ -1,0 +1,219 @@
+<head>
+<link rel="stylesheet" type="text/css" href="/styles/bootstrap4/bootstrap.min.css">
+<link href="/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" href="/plugins/themify-icons/themify-icons.css">
+<link rel="stylesheet" type="text/css" href="/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="/styles/single_styles.css">
+<link rel="stylesheet" type="text/css" href="/styles/single_responsive.css">
+
+<link rel="stylesheet" type="text/css" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+
+<link rel='stylesheet' href='/stylesheets/style.css' />
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+     
+</head>
+<style>
+    @media (max-width:576px){
+      .main{
+        margin-top: 110px;
+        padding: 0;
+      }
+    }
+     @media (min-width:577px){
+      .main{
+        margin-top: 160px;
+        padding: 0;
+      }
+    }
+    body{
+    background:#fcfcfc;
+}
+.card {
+    box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+}
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: 1rem;
+}
+.text-reset {
+    --bs-text-opacity: 1;
+    color: inherit!important;
+}
+a {
+    color: #5465ff;
+    text-decoration: none;
+}
+</style>
+
+<div class="container-fluid main">
+
+<div class="container">
+  <h1 class=" py-5">Order Details</h1>
+  <!-- Title -->
+  <div class="row d-flex justify-content-center">
+  <div class="col-lg-10 d-flex justify-content-between align-items-center py-3">
+    <h2 class="h5 mb-0"><a href="#" class="text-muted"></a> OrderID: {{orderData._id}}</h2>
+    <button onclick="printDiv('printArea')" class="btn btn-link p-0 me-3 d-none d-lg-block btn-icon-text"><i class="bi bi-download"></i> <span class="text">Invoice</span></button>
+  </div>
+  </div>
+
+  <!-- Main content -->
+  <div id="printArea" class="row d-flex justify-content-center">
+    <div class="col-lg-10">
+      <!-- Details -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="mb-3 d-flex justify-content-between">
+            <div>
+              <span class="me-3">{{orderData.date}}</span>
+              {{!-- <span class="me-3">#16123222</span> --}}
+              {{!-- <span class="me-3">Visa -1234</span> --}}
+              <span class="badge ml-2 rounded-pill bg-info">{{orderData.orderStatus}}</span>
+            </div>
+            <div class="d-flex">
+              <div class="dropdown">
+                <button class="btn btn-link p-0 text-muted" type="button" data-bs-toggle="dropdown">
+                  <i class="bi bi-three-dots-vertical"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  {{!-- <li><a class="dropdown-item" href="#"><i class="bi bi-pencil"></i> Edit</a></li>
+                  <li><a class="dropdown-item" href="#"><i class="bi bi-printer"></i> Print</a></li> --}}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <table class="table table-borderless">
+            <tbody>
+                {{#each orderData.products}}
+              <tr>
+                <td>
+                  <div class="d-flex mb-2">
+                    <div class="flex-shrink-0">
+                      <img src="/images/products/{{this.productID.images.[0]}}" alt="" width="50" class="img-fluid">
+                    </div>
+                    <div class="flex-lg-grow-1 ms-3 ml-3 d-flex align-items-center">
+                      <h6 class="medium mb-0"><a href="#" class="text-reset">{{this.items.name}}</a></h6>
+                      {{!-- <span class="small">Color: Black</span> --}}
+                    </div>
+                  </div>
+                </td>
+                <div class="d-flex">
+                <div class="d-flex justify-content-center align-items-center">
+                <td>{{this.quantity}}</td>
+                <td><span class="currenc">₹ </span>{{multiplyAmount this.items.sellingPrice this.quantity}}</td>
+                </div>
+                </div>
+              </tr>
+              {{/each}}
+             
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2">Subtotal</td>
+                <td class="text-end"><span class="currenc">₹ </span>{{orderData.totalCost}}</td>
+              </tr>
+              <tr>
+                <td colspan="2">Shipping</td>
+                <td class="text-end text-success">FREE</td>
+              </tr>
+              <tr>
+                <td colspan="2">Discount (Code: {{orderData.coupon}})</td>
+                <td class="text-danger text-end">- <span class="currenc">₹ </span>{{amountFormat orderData.discount}}</td>
+              </tr>
+              <tr class="fw-bold">
+                <td colspan="2">TOTAL</td>
+                <td class="text-end"><span class="currenc">₹ </span>{{amountFormat orderData.finalCost}}</td>
+              </tr>
+              <tr class="">
+                <td colspan="2"></td>
+                {{#twoConditions orderData.paymentStatus "Confirmed" orderData.orderStatus "Delivered"}}
+                <td></td>
+                {{!-- <td><button class="btn btn-sm btn-outline-secondary" disabled>{{orderData.orderStatus}}</button></td> --}}
+                {{else}}
+                <td class="text-center"><a onclick = "cancelOrder('{{orderData._id}}')" class="text-white btn btn-danger btn-sm mt-2">Cancel Order</a></td></tr>
+                {{/twoConditions}}
+            </tfoot>
+          </table>
+        </div>
+      </div>
+      <!-- Payment -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-6">
+              <h3 class="h6" style="text-decoration:underline ;">Payment Method</h3>
+              <p>{{orderData.paymentMethod}}<br>
+              Total: <span class="currenc">₹ </span>{{orderData.finalCost}}
+              {{!-- <span class="badge bg-success rounded-pill">PAID</span></p> --}}
+            </div>
+            <div class="col-lg-6">
+              <h3 class="h6" style="text-decoration:underline ;">Billing address</h3>
+              <address>
+                <strong>{{address.fullName}}</strong><br>
+                {{address.building}}<br>
+                {{address.area}}, {{address.district}}<br>
+                <span title="Phone">Phone:</span> +91 {{address.mobile}}
+              </address>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{!-- <div class="col-lg-4"> --}}
+      <!-- Customer Notes -->
+      {{!-- <div class="card mb-4"> --}}
+        {{!-- <div class="card-body d-flex justify-content-center">
+            <a href="/cancel-order" class="btn btn-danger btn-sm">Cancel Order</a> --}}
+          {{!-- <h3 class="h6">Customer Notes</h3> --}}
+          {{!-- <p>Sed enim, faucibus litora velit vestibulum habitasse. Cras lobortis cum sem aliquet mauris rutrum. Sollicitudin. Morbi, sem tellus vestibulum porttitor.</p> --}}
+        {{!-- </div> --}}
+      {{!-- </div> --}}
+      
+      {{!-- <div class="card mb-4"> --}}
+        <!-- Shipping information -->
+        
+        {{!-- <div class="card-body"> --}}
+          {{!-- <h3 class="h6">Shipping Information</h3>
+          <strong>FedEx</strong>
+          <span><a href="#" class="text-decoration-underline" target="_blank">FF1234567890</a> <i class="bi bi-box-arrow-up-right"></i> </span>
+          <hr> --}}
+          
+          {{!-- <h3 class="h6" style="text-decoration: underline;">Billing address</h3>
+          <address>
+            <strong>{{address.fullName}}</strong><br>
+            {{address.building}}<br>
+            {{address.area}}, {{address.district}}<br>
+            <span title="Phone">Phone:</span> +91 {{address.mobile}}
+          </address>
+        </div> --}}
+      {{!-- </div>
+    </div> --}}
+  </div>
+</div>
+  </div>
+  <script src="/javascripts/user-script.js"></script>
+  <script>
+    function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+    }
+  </script>

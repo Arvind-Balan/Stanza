@@ -1,0 +1,80 @@
+
+
+            <!-- Sale & Revenue Start -->
+            <div class="d-flex justify-content-center mt-5">
+                <div class="col-sm-12 col-xl-6 ">
+                    <div class="bg-secondary rounded h-100 p-4">
+                        <h5 class="mb-4">Edit Product</h5>
+                        <form action="/admin/edit-product/{{product._id}}" method="post" 
+                        enctype="multipart/form-data" 
+                        >
+                            <div class="form-floating mb-3">
+                                <input type="text" name="name" class="form-control" id="floatingInput"
+                                    value="{{product.name}}" placeholder="Product Name">
+                                <label for="floatingInput">Product</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="brand" class="form-control" id="floatingPassword"
+                                    value="{{product.brand}}" placeholder="Password">
+                                <label for="floatingPassword">Brand</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="details" class="form-control" id="floatingPassword"
+                                    value="{{product.details}}" placeholder="Password">
+                                <label for="floatingPassword">Details</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="description" class="form-control" id="floatingPassword"
+                                    value="{{product.description}}" placeholder="Password">
+                                <label for="floatingPassword">Description</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select required class="form-select" name="category" id="floatingSelect"
+                                    value="{{product.category}}" aria-label="Floating label select example">
+                                    {{!-- <option selected></option> --}}
+                                    {{#each categories}}
+                                    <option value={{this._id}}>{{this.name}}</option>
+                                    {{/each}}
+                                    {{!-- <option value="2">Violin</option>
+                                    <option value="3">Keyboard</option> --}}
+                                </select>
+                                <label for="floatingSelect">Select category</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="quantity" class="form-control" id="floatingPassword"
+                                    value="{{product.quantity}}" placeholder="Password">
+                                <label for="floatingPassword">Quantity</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="actualPrice" class="form-control" id="floatingPassword"
+                                    value="{{product.actualPrice}}" placeholder="Password">
+                                <label for="floatingPassword">Price</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="sellingPrice" class="form-control" id="floatingPassword"
+                                    value="{{product.sellingPrice}}" placeholder="Password">
+                                <label for="floatingPassword">Selling price</label>
+                            </div>
+                            <div class="mb-3">
+                                <label for="formFileMultiple" class="form-label">Add Images</label>
+                                <input name="images" class="form-control bg-dark" required type="file"
+                                    id="formFileMultiple"    >
+                                <img src="/images/products/{{product.images.[0]}}" style="width: 100px;height:auto"
+                                    {{!-- value="{{product.images}}" --}}
+                                    >
+                                {{!-- <input type="submit" class="btn btn-sm btn-primary "> --}}
+                                <button class="btn-danger" type="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>

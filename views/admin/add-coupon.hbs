@@ -1,0 +1,107 @@
+
+
+<div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h5 class="mb-3">Add Coupon</h5>
+                            <form class="text-danger" id="couponForm"
+                            {{!-- action="/admin/coupon-added" method="post" --}}
+                            >
+                                <div class="mb-3 text-light">
+                                    <label for="" class="form-label">Enter coupon name here</label>
+                                    <input placeholder="" required type="text"  class="text-uppercase form-control" name="name" id="name"
+                                        aria-describedby="" style="width: 60%;">
+                                    {{!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+                                    </div> --}}
+                                </div>
+                                 <div class="mb-3 text-light">
+                                    <label for="" class="form-label">Enter discount percentage here</label>
+                                    <input placeholder="" required type="text"  class="form-control" name="discount" id="discount"
+                                        aria-describedby="" style="width: 60%;">
+                                    {{!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+                                    </div> --}}
+                                </div>
+                                <div class="mb-3 text-light">
+                                    <label for="" class="form-label">Enter coupon code here</label>
+                                    <input placeholder="" required type="text"  class="text-uppercase form-control" name="code" id="code"
+                                        aria-describedby="" style="width: 60%;">
+                                    {{!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+                                    </div> --}}
+                                </div>
+    
+                                <button 
+                                {{!-- type="submit" --}}
+                                onclick="addCoupon()";
+                                {{!-- "submit" --}}
+                                 class="btn btn-primary mt-2 btn-sm">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+            </div>
+
+        </div>
+
+           
+           
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    {{!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/javascripts/admin-js/chart.min.js"></script>
+    <script src="/javascripts/admin-js/easing.min.js"></script>
+    <script src="/javascripts/admin-js/waypoints.min.js"></script>
+    <script src="/javascripts/admin-js/owl.carousel.min.js"></script>
+    <script src="/javascripts/admin-js/moment.min.js"></script>
+    <script src="/javascripts/admin-js/moment-timezone.min.js"></script>
+    <script src="/javascripts/admin-js/tempusdominus-bootstrap-4.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/javascripts/admin-js/main.js"></script>
+    <script src="/javascripts/admin-script.js"></script>
+</body>
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js">
+  </script>
+<script>
+  $("#couponForm").validate({
+    rules:{
+        name:{
+            required:true,
+            unique:true
+        },
+        code:{
+            required:true
+        },
+        discount:{
+            required:true,
+            digits:true
+        }
+    },
+    messages:{
+        name:{
+            required:"Enter coupon name",
+            unique:"This name is already exist"
+        },
+        code:{
+            required:"Enter coupon code"
+        },
+        discount:{
+            required:'Enter discount',
+            digits:"Only digits are allowed"
+        }
+    }
+  })
+</script>
+</html>

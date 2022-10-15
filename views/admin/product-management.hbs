@@ -1,0 +1,134 @@
+
+
+            <!-- Sale & Revenue Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Product Management</h6>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Product NAme</th>
+                                            <th scope="col">Brand</th>
+                                            <th scope="col">Actual Price</th>
+                                            <th scope="col">Selling Price</th>
+                                            <th scope="col">Image</th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each products}}
+                                        <tr>
+                                            <th scope="row">{{increment @index}}</th>
+                                            <td>{{this.name}}</td>
+                                            <td>{{this.brand}}</td>
+                                            <td>{{this.actualPrice}}</td>
+                                            <td>{{this.sellingPrice}}</td>
+                                            <td><img style="width: 50px; height: 50px" src="/images/products/{{this.images.[0]}}" alt=""></td>
+                                            <td><a href="/admin/edit-product/{{this._id}}" class="btn text-white" style="background-color: rgb(62, 167, 194);">Edit</a></td>
+                                            <td><a class="btn btn-danger" onclick=" sweetalert('{{this._id}}')" >Delete</a></td>
+                                            {{!-- <td>USA</td>
+                                            <td>123</td>
+                                            <td>Member</td> --}}
+
+                                            {{!-- {{#if isActive}}
+                                            <td class="text-success text-uppercase text-center">Active</td>
+                                            <td class="text-center"><a
+                                                    class="btn text-uppercase btn-sm btn-outline-danger"
+                                                    onclick="return confirm ('Are you sure want to block this user?')"
+                                                    href="/admin/block/{{this._id}}">Block</a></td>
+                                            {{else}}
+                                            <td class="text-danger text-uppercase text-center">Blocked</td>
+                                            <td class="text-center"><a
+                                                    class=" text-uppercase btn btn-sm btn-outline-success"
+                                                    onclick="return confirm ('Are you sure want to unblock this user?')"
+                                                    href="/admin/unblock/{{this._id}}">Unblock</a></td>
+                                            {{/if}} --}}
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+               function sweetalert (id)
+               {
+                console.log('haaaaaaaaaaaaaaaaaa')
+                swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this imaginary file!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+    console.log('hggga')
+  if (willDelete) {
+        location.href = href=`/admin/delete-product/${id}`
+    swal("Your file has been deleted!", {
+      icon: "success",
+    });
+  } else {
+    console.log('haaaaggggggggggggggggggggga')
+    swal("Your file is safe!");
+
+  }
+});
+               }
+            </script>
+            <!-- Recent Sales End -->
+
+
+
+
+
+            <!-- Footer Start -->
+            {{!-- <div class="container-fluid pt-4 px-4" style="position: absolute; margin-bottom: 0;">
+                <div class="bg-secondary rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">Your Site Name</a>, All Right Reserved.
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
+                            <br>Distributed By: <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/javascripts/admin-js/chart.min.js"></script>
+    <script src="/javascripts/admin-js/easing.min.js"></script>
+    <script src="/javascripts/admin-js/waypoints.min.js"></script>
+    <script src="/javascripts/admin-js/owl.carousel.min.js"></script>
+    <script src="/javascripts/admin-js/moment.min.js"></script>
+    <script src="/javascripts/admin-js/moment-timezone.min.js"></script>
+    <script src="/javascripts/admin-js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/javascripts/admin-js/main.js"></script>
+</body>
+
+</html>

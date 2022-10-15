@@ -1,0 +1,48 @@
+
+
+            <!-- Sale & Revenue Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            {{!-- <h6 class="mb-4">Add Category</h6> --}}
+                            <h5 class="mb-4">Add Category</h5>
+                            <form action="/admin/categoryAdded" method="post" class="text-danger" id="form">
+                                <div class="mb-3 text-dark">
+                                    <label style="color:white" class="form-label">Enter category name</label>
+                                    <input type="text" required class="form-control" name="name" id="categoryName"
+                                        aria-describedby="emailHelp">
+                                    {{!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone
+                                        else.
+                                    </div> --}}
+                                </div>
+                                {{!-- <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1">
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                </div> --}}
+                                <button type="submit" class="btn btn-sm btn-primary"
+                                    confirm="Are you sure to add this category name?">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Recent Sales End -->
+
+
+
+
+
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+

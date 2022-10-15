@@ -1,0 +1,193 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="/styles/bootstrap4/bootstrap.min.css">
+    <link href="/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" href="/plugins/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="/styles/single_styles.css">
+    <link rel="stylesheet" type="text/css" href="/styles/single_responsive.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js">
+    </script>
+</head>
+<style>
+    .error {
+        color: red;
+    }
+</style>
+{{>user-header}}
+<div id="addresses">
+    <div class="container main">
+        <div class="row d-flex justify-content-center">
+            <div class="col-11 col-sm-8 col-md-6 col-lg-4 mb-4" style="margin-top: 9rem;">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0 text-center">Add address</h5>
+                    </div>
+                    <div class="card-body">
+
+                        {{#if toCheckout}}
+                        <form action="/add-and-get-checkout" id="form" method="post" class="text-danger">
+                            {{else}}
+                            <form action="/add-address" method="post" id="form" class="text-danger">
+                                {{/if}}
+                                <!-- 2 column grid layout with text inputs for the first and last names -->
+                                <div class="row mb-4 text-dark">
+                                    <div class="col">
+                                        <div class="form-outline text-dark">
+                                            <label class="form-label" for="form7Example1">Full name</label>
+                                            <input name="fullName" required type="text" id="fullName"
+                                                class="form-control text-dark" />
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Number input -->
+                                <div class="form-outline mb-4 text-dark">
+                                    <label class="form-label" for="form7Example6">Phone</label>
+                                    <input name="mobile" required type="tel" id="mobile"
+                                        class="form-control text-dark" />
+
+                                </div>
+
+                                <!-- Number input -->
+                                <div class="form-outline mb-4 text-dark">
+                                    <label class="form-label" for="form7Example6">Pincode</label>
+                                    <input name="pincode" required type="tel" id="pincode"
+                                        class="form-control text-dark" />
+
+                                </div>
+
+                                <!-- Text input -->
+                                <div class="form-outline mb-4 text-dark">
+                                    <label class="form-label" for="form7Example3">Flat, House no., Building, Company,
+                                        Apartment</label>
+
+                                    <input name="building" required class="form-control text-dark" id="building"
+                                        rows="3"></input>
+
+                                </div>
+
+                                <!-- Text input -->
+                                {{!-- <div class="form-outline mb-4 text-dark">
+                                    <label class="form-label" for="form7Example4">Area, Street, Sector, Village</label>
+                                    <input name="area" required type="text" id="area" class="form-control text-dark" />
+
+                                </div> --}}
+
+                                <!-- Email input -->
+                                <div class="form-outline mb-4 text-dark">
+                                    <label class="form-label" for="form7Example5">Landmark</label>
+                                    <input name="landmark" required type="text" id="landmark"
+                                        class="form-control text-dark" />
+
+                                </div>
+
+                                <!-- Message input -->
+                                <div class="form-outline mb-4 text-dark">
+                                    <label class="form-label" for="form7Example7">District</label>
+                                    <input name="district" required type="text" id="district"
+                                        class="form-control text-dark" />
+
+                                </div>
+
+                                <!-- Checkbox -->
+                                <div class="form-check d-flex justify-content-center mb-2">
+                                    {{#if toCheckout}}
+                                    
+                                    <button type="submit" style="width: 100%;" class="btn btn-danger">Submit</button>
+                                    {{else}}
+                                    <button onclick="addAddress()" type="submit" style="width: 100%;" class="btn btn-danger">Submit</button>
+                                    {{/if}}
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-8 mb-4">
+                <div class="row d-flex justify-content-center">
+                    {{#each data}}
+                    <div style="margin: 5px;" class="card col-sm-6 col-md-12 col-lg-4 m-2" {{!--
+                        style="width: 18rem; height:16rem;" --}}>
+                        <div class="card-body">
+                            <h5 class="card-title">{{this.fullName}}</h5>
+                            <p class="card-text">{{this.building}}, {{this.landmark}}, {{this.area}}, {{this.pincode}},
+                                <br>{{this.district}},<br> Phone number: {{this.mobile}}</p>
+                            {{!-- <div class="mb-auto"> --}}
+                                <a href="/edit-address/{{this._id}}" class="btn btn-sm btn-info">Edit</a>
+                                <button onclick="deleteAddress('{{this._id}}')"
+                                    class="btn btn-sm text-white btn-secondary">Delete</button>
+                                {{!--
+                            </div> --}}
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $("#form").validate({
+        rules: {
+            fullName: {
+                required: true,
+                lettersonly:true
+            },
+            mobile: {
+                required: true,
+                digits: true,
+                minlength: 10,
+                maxlength: 10
+            },
+            pincode: {
+                required: true,
+                digits: true,
+                minlength: 6,
+                maxlength: 6
+            },
+            building: {
+                required: true
+            },
+            landmark: {
+                required: true
+            },
+            district: {
+                required: true
+            }
+        },
+        messages: {
+            fullName: {
+                required: 'Enter your full name'
+            },
+            mobile: {
+                required: 'Enter your mobile number',
+                digits: 'Enter digits',
+                minlength: 'Enter a valid mobile number',
+                maxlength: 'Enter a valid mobile number'
+            },
+            pincode: {
+                required: 'Enter your pincode',
+                digits: 'Enter digits',
+                minlength: 'Enter a valid pincode',
+                maxlength: 'Enter a valid pincode'
+            },
+            building: {
+                required: "Enter your building name"
+            },
+            landmark: {
+                required: 'Enter a landmark'
+            },
+            district: {
+                required: 'Enter your district'
+            }
+        }
+    })
+</script>
+<script src="/javascripts/user-script.js"></script>

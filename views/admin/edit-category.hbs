@@ -1,0 +1,59 @@
+
+            <!-- Navbar End -->
+
+
+            <!-- Sale & Revenue Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            {{!-- <h6 class="mb-4">Add Category</h6> --}}
+                            <h5 class="mb-4">Add Category</h5>
+                            <form action="/admin/edit-category/{{id}}" method="post" class="text-danger" id="form">
+                                <div class="mb-3 text-dark">
+                                    <label for="exampleInputEmail1" class="form-label">Enter category name</label>
+                                    <input type="text" required class="form-control" name="name" id="categoryName"
+                                        aria-describedby="emailHelp">
+                                    {{!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+                                    </div> --}}
+                                </div>
+                                {{!-- <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1">
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                </div> --}}
+                                <button type="submit" class="btn btn-sm btn-primary" confirm="Are you sure to add this category name?" >Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Recent Sales End -->
+
+
+
+
+
+            <!-- Footer Start -->
+            {{!-- <div class="container-fluid pt-4 px-4" style="position: absolute; margin-bottom: 0;">
+                <div class="bg-secondary rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">Your Site Name</a>, All Right Reserved.
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
+                            <br>Distributed By: <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+

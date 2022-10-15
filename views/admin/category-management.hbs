@@ -1,0 +1,46 @@
+<!-- Sale & Revenue Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Manage Category</h6>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Sl:Num</th>
+                                <th scope="col">Categories</th>
+
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each categories}}
+                            <tr>
+                                <th scope="row">{{increment @index}}</th>
+                                <td>{{this.name}}</td>
+                                <td><a href="/admin/edit-category/{{this._id}}"
+                                        class=" btn btn-success  btn-sm text-uppercase text-center">edit</a></td>
+                                <td><i class=" btn btn-danger btn-sm text-uppercase text-center delete" 
+                                        catId="{{this._id}}">Delete</i></td>
+
+
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Recent Sales End -->
+
+<!-- Content End -->
+
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+</div>

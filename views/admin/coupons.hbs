@@ -1,0 +1,68 @@
+
+
+            <!-- Sale & Revenue Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-12">
+                    <div class="col-12">
+                        <div id="coupons" class="bg-secondary rounded h-100 p-4">
+                            <div class="d-flex justify-content-between">
+                            <div class="col-10">
+                            <h5 class="mb-4 text-center">Coupons</h5>
+                            </div>
+                            <div class="col-2">
+                                <a href="/admin/add-coupon" class="text-uppercase btn btn-outline-info btn-sm">Add coupon</a>
+                            </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="border">
+                                            <th class="text-center" scope="col">No:</th>
+                                            <th class="text-center" scope="col">Coupon name</th>
+                                            <th class="text-center" scope="col">Discount</th>
+                                            <th class="text-center" scope="col">Coupon code</th>
+                                            <th></th>
+                                            <th></th>
+                                            
+                                            {{!-- <th scope="col">Status</th> --}}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each coupons}}
+                                    <tr class="">
+                                        <th class="text-center mt-2" scope="row">{{increment @index}}</th>
+                                        <td class="text-center mt-2" >{{this.name}}</td>
+                                        <td class="text-center mt-2" >{{this.discount}}%</td>
+                                        <td class="text-center mt-2" >{{this.code}}</td>
+                                        
+      {{!-- <td class="text-success text-uppercase text-center">Edit</td> --}}
+                                         <td class="text-center"><a  class="btn text-uppercase btn-sm btn-outline-warning" href="/admin/edit-coupon/{{this._id}}">Edit</a></td>
+      
+      {{!-- <td class="text-danger text-uppercase text-center">Delete</td> --}}
+                                         <td class="text-center"><a class=" text-uppercase btn btn-sm btn-outline-danger" onclick="deleteCoupon('{{this._id}}')">Delete</a></td>
+     
+                                    </tr>
+                                    {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+          
+
+
+
+
+
+        
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+<script src="/javascripts/admin-script.js"></script>

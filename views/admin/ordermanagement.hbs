@@ -1,0 +1,253 @@
+{{!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>DarkPan - Bootstrap 5 Admin Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet"> 
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="/adminStyles/admin/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/adminStyles/admin/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/adminStyles/admin/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="/adminStyles/admin/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-secondary navbar-dark">
+                <div class="navbar-brand mx-5 my-2">
+                    <h5 class="">PLAY <span style="color:#ff0000 ;">ON!</span></h5>
+                </div>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    <div class="position-relative">
+                        <img class="rounded-circle" src="/images/admin.jpg" alt="" style="width: 40px; height: 40px;">
+                        <div
+                            class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+                        </div>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">Pranav</h6>
+                        <span style="font-size: 14px;">Admin</span>
+                    </div>
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="/admin" class="nav-item nav-link"><i
+                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="/admin/users" class="nav-link nav-item"><i class="fas fa-users-cog"></i>Users</a>
+                    <a href="/admin/edit-banner" class="nav-link nav-item"><i class="fas fa-image"></i>Upload
+                        Banner</a>
+                    <a href="/admin/order-management" class="nav-link nav-item active"><i class="fa fa-shopping-basket"
+                            aria-hidden="true"></i>Orders</a>
+                    <a href="/admin/addproduct" class="nav-link"><i class="fas fa-cart-plus"></i>
+                        Add Products</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                class="fa fa-laptop me-2"></i>View Products</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            {{#each categoryList}}
+                            <a href="/admin/viewproducts/{{this._id}}" class="dropdown-item">{{this.name}}</a>
+                            {{/each}}
+                            <a href="/admin/viewallproducts" class="dropdown-item">All Products</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-table"
+                                aria-hidden="true"></i>
+                            Category</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="/admin/categorylist" class="dropdown-item">Show Category List</a>
+                            <a href="/admin/addcategory" class="dropdown-item">Add Category</a>
+                            
+                        </div>
+                    </div>
+                    <a href="/admin/coupons" class="nav-link nav-item"><i class="fa fa-tags" aria-hidden="true"></i>
+                        Coupons</a>
+                        <a href="/admin/logout" class="nav-link"><i class="fas fa-sign-out-alt"></i>
+                        Logout</a>
+
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End --> --}}
+
+
+        <!-- Content Start -->
+        {{!-- <div class="content"> --}}
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+                <a href="#" class="navbar-brand d-flex d-lg-none me-4"></a>
+                    <a href="#" class="sidebar-toggler flex-shrink-0">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                    <div class="navbar-nav align-items-center ms-auto">
+                        {{!-- <div class="nav-item">
+                            <a href="#" class="nav-link ">
+                                <img class="rounded-circle me-lg-2" src="/images/admin.jpg" alt=""
+                                    style="width: 35px; height: 35px;">
+                                <span class="d-none d-lg-inline-flex">Pranav</span>
+
+                            </a>
+                        </div> --}}
+                    </div>
+            </nav>
+            <!-- Navbar End -->
+
+
+
+            <!-- Button Start -->
+                <div class="container-fluid pt-4 px-4">
+                <div id="orders" class="bg-secondary text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h5 class="mb-0">Orders Management</h5>
+                    </div>
+                    <div id="Orders" class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-light fw-bold">
+                                    {{!-- <th scope="col"><input class="form-check-input" type="checkbox"></th> --}}
+                                    <th scope="col">Date</th>
+                                    {{!-- <th scope="col">Order ID</th> --}}
+                                    {{!-- <th scope="col">Items</th> --}}
+                                    <th scope="col">Customer</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Payment</th>
+                                    <th scope="col">Payment status</th>
+                                    <th scope="col">Order status</th>
+                                    <th scope="col">View</th>
+                                    <th scope="col">Action</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each ordersList}}
+                                <tr>
+                                    {{!-- <td><input class="form-check-input" type="checkbox"></td> --}}
+                                    <td>{{this.date}}</td>
+                                    {{!-- <td>{{this._id}}</td> --}}
+                                    {{!-- <td>{{itemsCount this.products}}</td> --}}
+                                    <td>{{this.userId.userName}}</td>
+                                    <td><span class="currenc">₹ </span>{{this.finalCost}}</td>
+                                    <td>{{this.paymentMethod}}</td>
+                                    <td>{{this.paymentStatus}}</td>
+                                    <td>{{this.orderStatus}}</td>
+                                    <td><a href="/admin/orderdetails/{{this._id}}"><i class="text-danger fa fa-eye d-flex justify-content-center" aria-hidden="true"></i></a></td>
+                                    {{#if (eq orderStatus 'Placed')}}
+                                    <td><a style="font-color: black;" onclick="packOrder('{{this._id}}')"><i style="color: black;" class="text-danger fa fa-share-square d-flex justify-content-center" data-toggle="tooltip" data-placement="top" title="Pack Order" aria-hidden="true"></i></a></td>
+                                    {{else if (eq orderStatus "Packed")}}
+                                    <td><a style="font-color: black;" onclick="shipOrder('{{this._id}}')"><i style="color: black;" class="text-danger fa fa-shopping-bag d-flex justify-content-center" data-toggle="tooltip" data-placement="top" title="Ship Order" aria-hidden="true"></i></a></td>
+                                    {{else if (eq orderStatus "Shipped")}}
+                                    <td><a style="font-color: black;" onclick="deliverOrder('{{this._id}}','{{this.userId._id}}')"><i style="color: black;" class="text-danger fa fa-truck d-flex justify-content-center" data-toggle="tooltip" data-placement="top" title="Deliver Order" aria-hidden="true"></i></a></td>
+                                    {{else if (eq orderStatus "Delivered")}}
+                                    <td><a style="font-color: black;"><i style="color: black;" class="text-danger fa fa-check-square d-flex justify-content-center" data-toggle="tooltip" data-placement="top" title="Order Delivered" aria-hidden="true"></i></a></td>
+                                    {{!-- <td><a href=""><i class="text-danger fa fa-times d-flex justify-content-center" aria-hidden="true"></i></a></td> --}}
+                                    {{/if}}
+                                    {{#twoConditions paymentStatus "Confirmed" orderStatus "Delivered"}}
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-light" disabled>Cancel</button>
+                                    </td>
+                                    {{else}}
+                                    <div class="d-flex align-items-center justify-content-center"><td><button class="btn btn-sm btn-light" onclick="cancelOrder('{{this._id}}')">Cancel</button></td></div>
+                                    {{/twoConditions}}
+                                    
+                                </tr>
+                                {{/each}}
+                                {{!-- <tr>
+                                    <td><input class="form-check-input" type="checkbox"></td>
+                                    <td>01 Jan 2045</td>
+                                    <td>INV-0123</td>
+                                    <td>Jhon Doe</td>
+                                    <td>$123</td>
+                                    <td>Paid</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox"></td>
+                                    <td>01 Jan 2045</td>
+                                    <td>INV-0123</td>
+                                    <td>Jhon Doe</td>
+                                    <td>$123</td>
+                                    <td>Paid</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox"></td>
+                                    <td>01 Jan 2045</td>
+                                    <td>INV-0123</td>
+                                    <td>Jhon Doe</td>
+                                    <td>$123</td>
+                                    <td>Paid</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox"></td>
+                                    <td>01 Jan 2045</td>
+                                    <td>INV-0123</td>
+                                    <td>Jhon Doe</td>
+                                    <td>$123</td>
+                                    <td>Paid</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr> --}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                </div>
+            </div>
+            <!-- Table End -->
+
+{{!-- <div class="container"> --}}
+        {{!-- </div> --}}
+        <!-- Content End -->
+
+{{!-- </div> --}}
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <script src="/javascripts/admin-script.js"></script>
+    {{!-- </div>
+    <script src="/javascripts/admin-script.js"></script>
+     <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/adminStyles/admin/lib/chart/chart.min.js"></script>
+    <script src="/adminStyles/admin/lib/easing/easing.min.js"></script>
+    <script src="/adminStyles/admin/lib/waypoints/waypoints.min.js"></script>
+    <script src="/adminStyles/admin/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/adminStyles/admin/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="/adminStyles/admin/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="/adminStyles/admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/adminStyles/admin/js/main.js"></script>
+</body>
+
+</html> --}}

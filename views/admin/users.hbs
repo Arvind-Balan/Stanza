@@ -1,0 +1,63 @@
+
+
+
+     
+
+            <!-- Sale & Revenue Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Manage User</h6>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">User name</th>
+                                            <th scope="col">Phone number</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each users}}
+                                        <tr>
+                                            <th scope="row">{{increment @index}}</th>
+                                            <td>{{this.userName}}</td>
+                                            <td>{{this.phoneNumber}}</td>
+                                            <td>{{this.email}}</td>
+                                            {{!-- <td>USA</td>
+                                            <td>123</td>
+                                            <td>Member</td> --}}
+
+                                            {{#if isActive}}
+                                            <td class="text-success text-uppercase text-center">Active</td>
+                                            <td class="text-center"><a
+                                                    class="btn text-uppercase btn-sm btn-outline-danger"
+                                                    onclick="return confirm ('Are you sure want to block this user?')"
+                                                    href="/admin/block/{{this._id}}">Block</a></td>
+                                            {{else}}
+                                            <td class="text-danger text-uppercase text-center">Blocked</td>
+                                            <td class="text-center"><a
+                                                    class=" text-uppercase btn btn-sm btn-outline-success"
+                                                    onclick="return confirm ('Are you sure want to unblock this user?')"
+                                                    href="/admin/unblock/{{this._id}}">Unblock</a></td>
+                                            {{/if}}
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         
+
+
+ 
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
