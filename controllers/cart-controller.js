@@ -7,54 +7,57 @@ const cart = require('../models/cart-schema')
 const { findOne } = require('../models/product-schema')
 const cartHelper = require('../helpers/cartHelper')
 const authentication = require('../middlewares/checkSession')
+const createError = require('http-errors');
 
 module.exports = {
-  addToCart: async (req, res) => {
-    console.log(req.params.id);
-   
+  addToCart: async (req, res,next) => {
+   try {
     await cartHelper.addingToCart(req.params.id, req.session.user._id).then(async () => {
-      // let cartData = await cart.findOne({ userId: req.session.user._id }).populate("products.items").lean()
-      // let products = cartData.products
-     // res.render('users/cartPage', { products, userID: req.session.user, login: true })
-     
-     res.redirect('/goToCart')
-    })
+      res.redirect('/goToCart')
+     })
+   } catch (error) {
+    next(createError(404));
+   }
    
   },
-  cartItmsCount: async (req, res) => {
-    let count
-    // console.log('hellooooooo');
+  cartItmsCount: async (req, res,next) => {
+    try {
+      let count
     if (req.session.loggedIn) {
-      await cartHelper.cartItemsCount(req.session.user._id).then((response) => {
-        // console.log('hellooooooo');
+      await cartHelper.cartItemsCount(req.session.user._id).then((response) => {      
         count = response;
-        // console.log(count);
         res.json(count)
-      })
-        .catch((err) => {
-          next(err)
-        })
+      }) 
+    }
+    } catch (error) {
+      next(createError(404));
     }
   },
   removeFromCart:async(req,res,next)=>{
-    console.log('helloooooooooo');
-    await cartHelper.removeFromCart(req.session.user._id,req.params.id).then((response)=>{
-      res.json(response)
-    }).catch((err)=>{
-      next(err)
-    })
+    try {
+      await cartHelper.removeFromCart(req.session.user._id,req.params.id).then((response)=>{
+        res.json(response)
+      })
+    } catch (error) {
+      next(createError(404));
+    }
   },
-  changeQuantity:(req,res)=>{
-    console.log('helloooo')
-    cartHelper.changeQuantity(req.body,req.session.user._id).then((response)=>{
-      console.log('response')
-      console.log(response)
-      res.json(response)
-    })
+  changeQuantity:(req,res,next)=>{
+    try {
+      cartHelper.changeQuantity(req.body,req.session.user._id).then((response)=>{
+        res.json(response)
+      })
+    } catch (error) {
+      next(createError(404));
+    }
   },
   
-checkout:(req,res)=>{
-  cartHelper.cartItemsCount()
+checkout:(req,res,next)=>{
+  try {
+    cartHelper.cartItemsCount()
   res.render("users/checkOutPage",{login: true }) 
+  } catch (error) {
+    next(createError(404));
+  }
 }
 }

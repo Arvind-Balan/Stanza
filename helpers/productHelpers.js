@@ -1,6 +1,7 @@
 const productSchema = require('../models/product-schema')
 const multer = require('multer');
 const product = require('../models/product-schema');
+const createError = require('http-errors');
 
     //CONFIGURATION OF MULTER
 const multerStorage = multer.diskStorage({
@@ -65,7 +66,6 @@ exports.getProductDetails=(productId)=>{
 //updating the product
 
 exports.updateProduct=(productId,data)=>{
-  console.log(productId,data)
   return new Promise(async(resolve,reject)=>{
     //console.log("kl",data);
     await productSchema.findOneAndUpdate({_id:productId},{

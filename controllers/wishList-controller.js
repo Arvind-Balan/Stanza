@@ -10,48 +10,54 @@ const cartHelper = require('../helpers/cartHelper')
 const wishListHelper=require('../helpers/wishListHelper')
 const authentication = require('../middlewares/checkSession')
 const { resolve } = require('path')
+const createError = require('http-errors');
 
 module.exports = {
     addToWishList: async (req, res) => {
-    //console.log(req.params.id);
-
+   try {
     await wishListHelper.addingToWishList(req.params.id, req.session.user._id).then((response) => {
-      console.log(response)
       res.json(response)
     })
+   } catch (error) {
+    next(createError(404));
+   }
 
   },
 
   wishlistPage:async(req,res)=>{
-    await wishListHelper.getWishlistItems(req.session.user._id).then((products)=>{
-      const pro = products.products
-      res.render('users/wishListPage',{pro,user:true,login:true})
-    })
-  
+    try {
+      await wishListHelper.getWishlistItems(req.session.user._id).then((products)=>{
+        const pro = products.products
+        res.render('users/wishListPage',{pro,user:true,login:true})
+      })
+    
+    } catch (error) {
+      next(createError(404));
+    }
   },
 
 
   wishListItemsCount: async (req, res) => {
-    let count
-    // console.log('hellooooooo');
+    try {
+      let count
     if (req.session.loggedIn) {
       await wishListHelper.wishListItmsCount(req.session.user._id).then((response) => {
-        // console.log('hellooooooo');
         count = response;
-        // console.log(count);
         res.json(count)
       })
-        .catch((err) => {
-          next(err)
-        })
+        
+    }
+    } catch (error) {
+      next(createError(404));
     }
   },
   removeFromWishlist:async(req,res,next)=>{
-    console.log('helloooooooooo');
+   try {
     await wishListHelper.removeWishlistItem(req.session.user._id,req.params.id).then((response)=>{
       res.json(response)
-    }).catch((err)=>{
-      next(err)
     })
+   } catch (error) {
+    next(createError(404));
+   }
   }
 }
