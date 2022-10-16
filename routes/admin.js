@@ -9,7 +9,9 @@ const orders = require('../models/order-schema')
 const ProductController = require("../controllers/Product-Controller")
 const categoryController = require('../controllers/category-controller')
 const { response } = require('express');
-const auth = require('../middlewares/checkSession')
+const auth = require('../middlewares/checkSession');
+const { set } = require('mongoose');
+const { find } = require('../models/user-schema');
 
 /* GET admin login page. */
 router.get('/', function (req, res, next) {
@@ -202,20 +204,20 @@ router.get('/logOut', (req, res) => {
 
 
 //ORDER MANAGEMENT
-router.get("/order-management",auth.adminAuthentication, async (req, res) => {
+router.get("/order-management", auth.adminAuthentication, async (req, res) => {
   // if (req.session.admin) {
-    const ordersList = await orders
-      .find()
-      .sort({ createdAt: -1 })
-      .populate("userId")
-      .populate("products.items")
-      .lean();
-    console.log(ordersList);
-    res.render("admin/ordermanagement", {
-      ordersList,
-      layout: "adminLayout",
-      categoryList: req.session.categoryList,
-    });
+  const ordersList = await orders
+    .find()
+    .sort({ createdAt: -1 })
+    .populate("userId")
+    .populate("products.items")
+    .lean();
+  console.log(ordersList);
+  res.render("admin/ordermanagement", {
+    ordersList,
+    layout: "adminLayout",
+    categoryList: req.session.categoryList,
+  });
   // } else {
   //   res.redirect("/admin");
   // }
@@ -335,6 +337,20 @@ router.post("/update-coupon/:id", (req, res, next) => {
     });
 });
 
+router.get('/data', async (req, res) => {
+  const order = await orders.find()
+  const orderData = order.map(e => e.date )
+  const uniqueDate = [... new Set(orderData)]
+  let obj =[]
+
+  for(i=0;i<uniqueDate.length;i++){
+  let j= await orders.find({date:uniqueDate[i]}) 
+const k = j.reduce((acc,crr)=>acc+crr.finalCost,0)
+obj.push({date:uniqueDate[i],sales:k})
+  }
+  console.log(obj)
+  res.json({obj})
+})
 
 
 

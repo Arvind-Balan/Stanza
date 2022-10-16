@@ -1,10 +1,9 @@
-const { response } = require('express');
+
 var express = require('express');
+const createError = require('http-errors');
 const userSchema = require('../models/user-schema')
-const categorySchema = require('../models/category-schema')
 const userhelpers = require('../helpers/userhelpers');
 const productSchema = require('../models/product-schema')
-const couponSchema = require('../models/coupon-schema')
 var router = express.Router();
 const twilio = require('../utils/twilio')
 const ProductController = require("../controllers/Product-Controller")
@@ -14,9 +13,7 @@ const auth = require('../middlewares/checkSession')
 const cartHelper = require('../helpers/cartHelper')
 const orderController = require("../controllers/order-controller")
 const cartModel = require('../models/cart-schema');
-const { TaskRouterGrant } = require('twilio/lib/jwt/AccessToken');
-const { products } = require('../config/collections');
-const coupon = require('../models/coupon-schema');
+
 
 /* GET home page. */
 router.get('/', auth.activeCheck, async function (req, res, next) {
@@ -307,12 +304,17 @@ router.get(
         const address = response.address;
         console.log(address);
         console.log(orderData);
-        res.render("users/orderdetails", {
-          orderData,
-          address,
-          user: true,
-          login: true,
-        });
+        if(orderData){
+          res.render("users/orderdetails", {
+            orderData,
+            address,
+            user: true,
+            login: true,
+          });
+        }else{
+          res.redirect('/view-orders')
+        }
+       
       })
       .catch((err) => {
         next(err);
@@ -324,16 +326,22 @@ router.get(
 //to get user profile
 
 router.get("/user-profile", auth.authentication, auth.activeCheck, async(req, res, next) => {
-  if (req.session) {
-    const user = await userSchema.findById(req.session.user._id)
-        res.render("users/userprofile",{user});
-      // })
-      // .catch((err) => {
-      //   next(err);
-      // });
-  } else {
-    res.redirect("/toLogin");
+  try {
+    if (req.session) {
+      const user = await userSchema.findById(req.session.user._id)
+          res.render("users/userprofile",{user});
+        // })
+        // .catch((err) => {
+        //   next(err);
+        // });
+    } else {
+      res.redirect("/toLogin");
+    }
+    
+  } catch (error) {
+    next(createError(404));
   }
+ 
 });
 
 
