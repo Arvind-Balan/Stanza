@@ -161,7 +161,8 @@ a{color:inherit;text-decoration:none}
 		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
 		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
 		<div class="login-form">
-            <form action="/loggedIn" method="post">
+			{{!-- login form --}}
+            <form action="/loggedIn" method="post" id="login-form">
 			<div class="sign-in-htm">
 				<div class="group">
 					<label for="user" class="label">Email</label>
@@ -174,10 +175,7 @@ a{color:inherit;text-decoration:none}
 					<p>Invalid email or password</p>
 					{{/if}}
 				</div>
-				{{!-- <div class="group">
-					<input id="check" type="checkbox" class="check" checked>
-					<label for="check"><span class="icon"></span> Keep me Signed in</label>
-				</div> --}}
+				
 				<div class="group">
 					<input type="submit" class="button" value="Sign In">
 				</div>
@@ -191,27 +189,29 @@ a{color:inherit;text-decoration:none}
 				</div>
 			</div>
             </form>
+
+			{{!-- signup form --}}
 			<div class="sign-up-htm">
-                <form action="/signedIn" method="post">
+                <form action="/signedIn" method="post" id="signup-form">
 				<div class="group">
 					<label for="user" class="label">Name</label>
 					<input id="user" type="text" name="userName" class="input">
 				</div>
 				<div class="group">
 					<label for="pass" class="label">Email Address</label>
-					<input id="pass" type="text" name="email" class="input">
+					<input id="passw" type="text" name="email" class="input">
 				</div>
 				<div class="group">
 					<label for="pass" class="label">Phone Number</label>
-					<input id="pass" type="tel" name="phoneNumber" class="input">
+					<input id="passwo" type="tel" name="phoneNumber" class="input">
 				</div>
 				<div class="group">
 					<label for="pass" class="label">Password</label>
-					<input id="pass" type="password"  name="password" class="input" data-type="password">
+					<input id="passwor" type="password"  name="password" class="input" data-type="password">
 				</div>
 				<div class="group">
 					<label for="pass" class="label">Repeat Password</label>
-					<input id="pass" type="password" class="input" data-type="password">
+					<input id="passss" type="password" class="input" name="repeatpassword" data-type="password">
 				</div>
 				
 				<div class="group">
@@ -219,10 +219,84 @@ a{color:inherit;text-decoration:none}
 				</div>
                 </form>
 				<div class="hr"></div>
-				{{!-- <div class="foot-lnk">
-					<label for="tab-1">Already Member?</a>
-				</div> --}}
+				
 			</div>
 		</div>
 	</div>
 </div>
+	<script src="/javascripts/user-js/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
+<script>
+  $("#login-form").validate({
+    rules: {
+          email: {
+            required: true,
+            email: true
+          },
+          password: {
+            required: true,
+            minlength: 6
+          }
+        },
+        messages: {
+          email: {
+            required: 'Enter your email ',
+            email: 'Entered email is not valid',
+            noCaps: 'Entered email is not valid'
+          },
+          password: {
+            required: 'Enter your password',
+            minlength: 'Minimum password length is 6'
+          }
+        }
+  })
+
+  $("#signup-form").validate({
+    rules: {
+		userName:{
+			required:true,
+			minlength:3,
+			digits:false
+		},
+          email: {
+            required: true,
+            email: true
+          },
+		  phoneNumber:{
+                required: true,
+                digits: true,
+                minlength: 10,
+                maxlength: 10
+            },
+          password: {
+            required: true,
+            minlength: 6
+          }
+        },
+        messages: {
+          email: {
+            required: 'Enter your email ',
+            email: 'Entered email is not valid',
+            noCaps: 'Entered email is not valid'
+          },
+		  phoneNumber:{
+                required: 'Enter your mobile number',
+                digits: 'Enter digits',
+                minlength: 'Enter a valid mobile number',
+                maxlength: 'Enter a valid mobile number'
+            },
+          password: {
+            required: 'Enter your password',
+            minlength: 'Minimum password length is 6'
+          }
+        }
+  })
+
+
+
+</script>
+<script>
+
+</script>

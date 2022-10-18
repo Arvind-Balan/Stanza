@@ -55,29 +55,6 @@ function addToWishlist(pdtId){
     }
 
 
-//CHANGE CART ITEM QUANTITY
-// function changeQuantity(pdtId,user,count){
-//     $.ajax({
-//         url:"/change-quantity",
-//         method:"post",
-//         data:{
-//             pdtId:pdtId,
-//             userId:user,
-//             count:count
-//         },
-//         success:(response)=>{
-//             console.log("response",response)
-//             if(response){
-//             $("#product").load(location.href + " #product")
-//             document.getElementById('totalcost').innerHTML = response
-//             // location.reload();
-//             }
-
-//         },error:(err)=>{
-//             console.log('error',err)
-//         }
-//     })
-// }
 
 
 //ADD ADDRESS
@@ -164,13 +141,7 @@ function placeOrder(){
             if(data.response.orderSuccess){
             location.assign(`/ordersuccess/${data.response.data._id}`)
             }
-            // else{
-            //   swal({
-            //     title:"Order failed",
-            //     icon: "warning",
-            //     button: false
-            //   });
-            // }
+            
             if(data.response.razorpay)
          
             {
